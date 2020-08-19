@@ -1,0 +1,12 @@
+{
+    "name": "com.hecomi.udesktopduplication",
+    "displayName": "uDesktopDuplication",
+    "version": "1.7.0",
+    "unity": "2017.1",
+    "description": "Package wrapper for https://github.com/hecomi/uDesktopDuplication",
+    "dependencies": {},
+	"author": {
+		"name": "hecomi"
+	},
+	"type": "library"
+}
