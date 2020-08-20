@@ -87,6 +87,7 @@ void Monitor::Render()
 {
     UDD_FUNCTION_SCOPE_TIMER
 
+    duplicator_->Duplicate(250);
     const auto& frame = duplicator_->GetLastFrame();
 
     if (frame.id == lastFrameId_) return;

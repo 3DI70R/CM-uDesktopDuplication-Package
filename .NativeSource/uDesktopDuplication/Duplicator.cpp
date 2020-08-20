@@ -131,61 +131,11 @@ void Duplicator::CheckUnityAdapter()
 
 void Duplicator::Start()
 {
-    UDD_FUNCTION_SCOPE_TIMER
-
-    if (state_ != State::Ready) return;
-
-    Stop();
-
-    thread_ = std::thread([this] 
-    {
-        using namespace std::chrono;
-
-        state_ = State::Running;
-
-        shouldRun_ = true;
-        while (shouldRun_)
-        {
-            const auto frameRate = GetMonitorManager()->GetFrameRate();
-            const UINT frameMicroSeconds = 1000000 / frameRate;
-            const UINT frameMilliSeconds = 1000 / frameRate;
-
-            ScopedTimer timer([frameMicroSeconds] (microseconds us)
-            {
-                const auto waitTime = microseconds(frameMicroSeconds) - us;
-                if (waitTime > microseconds::zero())
-                {
-                    std::this_thread::sleep_for(waitTime);
-                }
-            });
-
-            const auto timeout = static_cast<UINT>(frameMilliSeconds);
-            Duplicate(timeout);
-
-            if (state_ != State::Running)
-            {
-                break;
-            }
-        }
-
-        if (state_ == State::Running)
-        {
-            state_ = State::Ready;
-        }
-    });
 }
 
 
 void Duplicator::Stop()
 {
-    UDD_FUNCTION_SCOPE_TIMER
-
-    shouldRun_ = false;
-
-    if (thread_.joinable())
-    {
-        thread_.join();
-    }
 }
 
 

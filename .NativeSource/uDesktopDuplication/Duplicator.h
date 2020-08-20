@@ -63,7 +63,7 @@ public:
     Microsoft::WRL::ComPtr<IDXGIOutputDuplication> GetDuplication();
     const Frame& GetLastFrame() const;
 
-private:
+public:
     void InitializeDevice();
     void InitializeDuplication();
     void CheckUnityAdapter();
