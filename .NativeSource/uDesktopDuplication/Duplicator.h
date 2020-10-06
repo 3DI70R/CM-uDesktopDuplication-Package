@@ -63,13 +63,13 @@ public:
     Microsoft::WRL::ComPtr<IDXGIOutputDuplication> GetDuplication();
     const Frame& GetLastFrame() const;
 
-public:
+    void Duplicate(UINT timeout);
+    void Release();
+
+private:
     void InitializeDevice();
     void InitializeDuplication();
     void CheckUnityAdapter();
-
-    void Duplicate(UINT timeout);
-    void Release();
 
     void UpdateCursor(
         const Microsoft::WRL::ComPtr<ID3D11Texture2D>& texture,

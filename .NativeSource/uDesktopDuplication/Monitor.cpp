@@ -87,7 +87,7 @@ void Monitor::Render()
 {
     UDD_FUNCTION_SCOPE_TIMER
 
-    duplicator_->Duplicate(250);
+    duplicator_->Duplicate(0);
     const auto& frame = duplicator_->GetLastFrame();
 
     if (frame.id == lastFrameId_) return;
@@ -150,6 +150,7 @@ void Monitor::Render()
 		CopyTextureFromGpuToCpu(unityTexture_);
 	}
 
+    duplicator_->Release();
 	hasBeenUpdated_ = true;
 }
 
